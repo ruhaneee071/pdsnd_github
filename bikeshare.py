@@ -38,8 +38,8 @@ def get_filters():
         print(MONTH_DATA)
 		#converting user input to lower case
         month = input().lower()
-        
-        
+
+
         if month not in MONTH_DATA:
             print("\nSorry! Currently no data available for this month. Please select month from the above month list")
     print("\nLets begin to analyze data for {}".format(month))
@@ -73,7 +73,7 @@ def load_data(city, month, day):
     """
 
     # load city data into panda dataframe
-    df = pd.read_csv(CITY_DATA[city]) 
+    df = pd.read_csv(CITY_DATA[city])
 
 
     # convert 'Start Time' & 'End Time' column to datetime
@@ -126,12 +126,12 @@ def time_stats(df, month, day, city):
         # display the most common day of week
     if day != 'all':
         print('\nOnly {} is selected as input'.format(day.upper()))
-        
+
     else:
         common_day_of_the_week = df['day_of_the_week'].mode()[0]
         print('\nThe most common day of week: {}'.format(days_list[common_day_of_the_week].upper()))
-    
-    
+
+
     # display the most common start hour
     common_start_hour = df['hour'].mode()[0]
     print('\nThe most common start hour: {}'.format(common_start_hour))
@@ -140,7 +140,7 @@ def time_stats(df, month, day, city):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
+
     return
 
 
@@ -231,17 +231,29 @@ def user_stats(df):
 
 
 
-def display_csv_data(df, city):
-#Displays raw data (5 rows) from the city selected by the user.
-    print('*'*120)
-    
-    row_index = 0
-    while True:
-        disp_data = input("\nDo you want to see 5 rows of data for the city: {}? Yes or No:\n".format(city)).lower()
-        if disp_data != 'yes':
-            return
-        print(df.iloc[row_index:row_index+5])
-        row_index = row_index + 5
+def display_csv_data(df):
+    """Displays 5 rows of data from the csv file for the selected city.
+    Args:
+        param1 (df): The data frame you want to work with.
+    Returns:
+        None.
+    """
+    USER_RESPONSE_LIST = ['yes', 'no']
+    row_data = ''
+    index = 0
+    while row_data not in USER_RESPONSE_LIST:
+        print("\nDo you want to view the raw data?")
+        print("\nAccepted responses:\nYes or No")
+        row_data = input().lower()
+        #the raw data from the df is displayed if user opts for it
+        if row_data == "yes":
+            print(df.head())
+        elif row_data not in USER_RESPONSE_LIST:
+            print("\nPlease select your input as \nYes or No.")
+            print("\nRestarting...\n")
+
+
+    print('-'*40)
 
 def main():
     while True:
