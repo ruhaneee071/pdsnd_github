@@ -231,29 +231,17 @@ def user_stats(df):
 
 
 
-def display_csv_data(df):
-    """Displays 5 rows of data from the csv file for the selected city.
-    Args:
-        param1 (df): The data frame you want to work with.
-    Returns:
-        None.
-    """
-    USER_RESPONSE_LIST = ['yes', 'no']
-    row_data = ''
-    index = 0
-    while row_data not in USER_RESPONSE_LIST:
-        print("\nDo you want to view the raw data?")
-        print("\nAccepted responses:\nYes or No")
-        row_data = input().lower()
-        #the raw data from the df is displayed if user opts for it
-        if row_data == "yes":
-            print(df.head())
-        elif row_data not in USER_RESPONSE_LIST:
-            print("\nPlease select your input as \nYes or No.")
-            print("\nRestarting...\n")
-
-
-    print('-'*40)
+def display_csv_data(df, city):
+#Displays raw data (5 rows) from the city selected by the user.
+    print('*'*120)
+    
+    row_index = 0
+    while True:
+        disp_data = input("\nDo you want to see 5 rows of data for the city: {}? Yes or No:\n".format(city)).lower()
+        if disp_data != 'yes':
+            return
+        print(df.iloc[row_index:row_index+5])
+        row_index = row_index + 5
 
 def main():
     while True:
@@ -263,7 +251,7 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
-        display_csv_data(df)
+        display_csv_data(df, city)
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
