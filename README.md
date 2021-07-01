@@ -55,3 +55,14 @@ average travel time
 counts of each user type
 counts of each gender (only available for NYC and Chicago)
 earliest, most recent, most common year of birth (only available for NYC and Chicago)
+
+### Useful links
+
+https://docs.python.org/3/library/
+https://hub.udacity.com/rooms/community:nd104-ent:1031964-project-328-smg-2?contextType=profile&profileId=11188231149
+https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.mode.html
+https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.value_counts.html
+https://pandas.pydata.org/pandas-docs/stable/
+https://www.programiz.com/python-programming/methods/built-in/divmod
+https://www.youtube.com/watch?v=ZyhVh-qRZPA&list=PL-osiE80TeTsWmV9i9c58mdDCSskIFdDS
+
