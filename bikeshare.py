@@ -206,11 +206,11 @@ def user_stats(df):
     print('*'*40)
     start_time = time.time()
 
-    # Display counts of user types
+    # Display counts of gender if 'Gender' column is present in the csv file.
     user_types_counts= df['User Type'].value_counts()
     print('\nThe counts of user types are: {}\n'.format(user_types_counts))
 
-    # Display counts of gender if 'Gender' column is present in the csv file.
+    # Display earliest, most recent, and most common year of birth if 'Birth Year' column is present in the csv file.
     try:
         gender_counts = df['Gender'].value_counts()
         print('\nThe counts of each gender are: {}\n'.format(gender_counts))
