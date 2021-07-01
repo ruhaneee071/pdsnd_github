@@ -252,17 +252,6 @@ def display_csv_data(df):
             print("\nPlease select your input as \nYes or No.")
             print("\nRestarting...\n")
 
-    #Additional while loop if the user want to continue viewing data
-    while row_data == 'yes':
-        print("Do you want to view more raw data?")
-        print("\nAccepted responses:\nYes or No")
-        index += 5
-        row_data = input().lower()
-        # This displays next 5 rows of data
-        if row_data == "yes":
-             print(df[index:index+5])
-        elif row_data != "yes":
-             break
 
     print('-'*40)
 
