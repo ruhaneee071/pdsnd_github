@@ -63,9 +63,15 @@ earliest, most recent, most common year of birth (only available for NYC and Chi
 ### Useful Links
 
 ###1 https://docs.python.org/3/library/
+
 ###2 https://hub.udacity.com/rooms/community:nd104-ent:1031964-project-328-smg-2?contextType=profile&profileId=11188231149
+
 ###3 https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.mode.html
+
 ###4 https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.value_counts.html
+
 ###5 https://pandas.pydata.org/pandas-docs/stable/
+
 ###6 https://www.programiz.com/python-programming/methods/built-in/divmod
+
 ###7 https://www.youtube.com/watch?v=ZyhVh-qRZPA&list=PL-osiE80TeTsWmV9i9c58mdDCSskIFdDS
