@@ -38,8 +38,8 @@ def get_filters():
         print(MONTH_DATA)
 		#converting user input to lower case
         month = input().lower()
-        
-        
+
+
         if month not in MONTH_DATA:
             print("\nSorry! Currently no data available for this month. Please select month from the above month list")
     print("\nLets begin to analyze data for {}".format(month))
@@ -73,7 +73,7 @@ def load_data(city, month, day):
     """
 
     # load city data into panda dataframe
-    df = pd.read_csv(CITY_DATA[city]) 
+    df = pd.read_csv(CITY_DATA[city])
 
 
     # convert 'Start Time' & 'End Time' column to datetime
@@ -126,12 +126,12 @@ def time_stats(df, month, day, city):
         # display the most common day of week
     if day != 'all':
         print('\nOnly {} is selected as input'.format(day.upper()))
-        
+
     else:
         common_day_of_the_week = df['day_of_the_week'].mode()[0]
         print('\nThe most common day of week: {}'.format(days_list[common_day_of_the_week].upper()))
-    
-    
+
+
     # display the most common start hour
     common_start_hour = df['hour'].mode()[0]
     print('\nThe most common start hour: {}'.format(common_start_hour))
@@ -140,7 +140,7 @@ def time_stats(df, month, day, city):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
+
     return
 
 
@@ -206,18 +206,18 @@ def user_stats(df):
     print('*'*40)
     start_time = time.time()
 
-    # Display counts of gender if 'Gender' column is present in the csv file.
+    # Display counts of user types
     user_types_counts= df['User Type'].value_counts()
     print('\nThe counts of user types are: {}\n'.format(user_types_counts))
 
-    # Display earliest, most recent, and most common year of birth if 'Birth Year' column is present in the csv file.
+    # Display counts of gender.
     try:
         gender_counts = df['Gender'].value_counts()
         print('\nThe counts of each gender are: {}\n'.format(gender_counts))
     except:
         print("\nThere is no 'Gender' specific data for this city.\n")
 
-    # Display earliest, most recent, and most common year of birth if 'Birth Year' column is present in the csv file.
+    # Display earliest, most recent, and most common year of birth.
     try:
         earliest_birth_year= int(df['Birth Year'].min())
         recent_birth_year = int(df['Birth Year'].max())
@@ -231,40 +231,17 @@ def user_stats(df):
 
 
 
-def display_csv_data(df):
-    """Displays 5 rows of data from the csv file for the selected city.
-    Args:
-        param1 (df): The data frame you want to work with.
-    Returns:
-        None.
-    """
-    USER_RESPONSE_LIST = ['yes', 'no']
-    row_data = ''
-    index = 0
-    while row_data not in USER_RESPONSE_LIST:
-        print("\nDo you want to view the raw data?")
-        print("\nAccepted responses:\nYes or No")
-        row_data = input().lower()
-        #the raw data from the df is displayed if user opts for it
-        if row_data == "yes":
-            print(df.head())
-        elif row_data not in USER_RESPONSE_LIST:
-            print("\nPlease select your input as \nYes or No.")
-            print("\nRestarting...\n")
+def display_csv_data(df, city):
+#Displays raw data (5 rows) from the city selected by the user.
+    print('*'*120)
 
-    #Additional while loop if the user want to continue viewing data
-    while row_data == 'yes':
-        print("Do you want to view more raw data?")
-        print("\nAccepted responses:\nYes or No")
-        index += 5
-        row_data = input().lower()
-        # This displays next 5 rows of data
-        if row_data == "yes":
-             print(df[index:index+5])
-        elif row_data != "yes":
-             break
-
-    print('-'*40)
+    row_index = 0
+    while True:
+        disp_data = input("\nDo you want to see 5 rows of data for the city: {}? Yes or No:\n".format(city)).lower()
+        if disp_data != 'yes':
+            return
+        print(df.iloc[row_index:row_index+5])
+        row_index = row_index + 5
 
 def main():
     while True:
@@ -274,7 +251,7 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
-        display_csv_data(df)
+        display_csv_data(df, city)
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
