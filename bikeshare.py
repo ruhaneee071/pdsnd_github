@@ -243,19 +243,19 @@ def display_csv_data(df):
     index = 0
     while row_data not in USER_RESPONSE_LIST:
         print("\nDo you want to view the raw data?")
-        print("\nAccepted responses:\nYes or No")
+        print("\nAccepted responses:\nYes or yes\nNo or no")
         row_data = input().lower()
         #the raw data from the df is displayed if user opts for it
         if row_data == "yes":
             print(df.head())
         elif row_data not in USER_RESPONSE_LIST:
-            print("\nPlease select your input as \nYes or No.")
+            print("\nPlease select your input as \nYes or yes\nNo or no.")
             print("\nRestarting...\n")
 
     #Additional while loop if the user want to continue viewing data
     while row_data == 'yes':
         print("Do you want to view more raw data?")
-        print("\nAccepted responses:\nYes or No")
+        print("\nAccepted responses:\nYes or yes\nNo or no")
         index += 5
         row_data = input().lower()
         # This displays next 5 rows of data
